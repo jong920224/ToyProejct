@@ -52,6 +52,7 @@ public class UserController {
 		return mV;
 	}
 	
+	// 로그인 확인
 	@ResponseBody
 	@RequestMapping(value = "/loginCheck.do")
 	public String selectLoginCheck(@RequestParam("userId") String userId, @RequestParam("userPwd") String userPwd) {
@@ -64,19 +65,17 @@ public class UserController {
 		Map<String, Object> rtnMap = userService.selectLoginCheck(mapParam);
 		
 		if(rtnMap != null) {
-			System.out.println("@@@ success");
 			return "success";
 		} else {
-			System.out.println("@@@ fail");
 			return "fail";
 		}
-		
 	}
 	
+	// 로그아웃
 	@RequestMapping(value = "/logoutAction.do")
 	public String selectLogoutAction(HttpSession session) {
 		session.invalidate();
 		return "redirect:/index.jsp";
 	}
-
+	
 }
